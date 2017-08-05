@@ -7,20 +7,21 @@ var letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","
 
 var muppet = ["bert","ernie","elmo","grover","abby","snuffleupagus","oscar", "bigbird"];
 
-var lettersGuessed;
-var wins = 0;
-var	guessesLeft;
-var	guessesMade;
-var chosenMuppet;
 var blank;
 var blankMuppet;
+var chosenMuppet;
 var correctGuess;
+var	guessesLeft;
+var	guessesMade;
+var lettersGuessed;
+var wins = 0;
 
 //Reset function: Generates random letter based on possible output and sets guesses counters back to default
 resetVariables();
 
 // Get user input
 document.onkeyup = function(event) {
+
 	// resets correct guess toggle 
 	var correctGuess = false;
 
@@ -28,9 +29,6 @@ document.onkeyup = function(event) {
 	var keyPressed = String.fromCharCode(event.keyCode).toLowerCase();
 	console.log ("input: " + keyPressed);
 
-	
-
-	//Record the guessed letter in array 
 	//loop through array to see if the letter has alreay been guessed
 	for (var i = 0; i < chosenMuppet.length; i++) {
 
@@ -41,8 +39,12 @@ document.onkeyup = function(event) {
 			correctGuess = true;
 		}
 	};
+
+	//changes array into sting for display purposes
 	var lettersGuessedDisplay = lettersGuessed.join(" ");
 
+
+	//ignores the input if the same letter is presse more than once
 	var duplicateLetter = lettersGuessedDisplay.includes(keyPressed)
 	console.log("dup:"+ duplicateLetter);
 	if (duplicateLetter === false){
@@ -54,13 +56,46 @@ document.onkeyup = function(event) {
 		}
 	}
 
-
 	// reset win or loss
 	var unsolved = blankMuppet.includes("_");
 	
 	if (unsolved === false){
 		wins++;
 		resetVariables();
+		// switch (chosenMuppet){
+
+		// 	case "bert":
+		// 		console.log(chosenMuppet+'wins')
+		// 	break;
+
+		// 	case "ernie":
+		// 		console.log(chosenMuppet+'wins')
+		// 	break;
+
+		// 	case "elmo":
+				
+		// 	break;
+
+		// 	case "grover":
+		// 		console.log(chosenMuppet+'wins')
+		// 	break;
+
+		// 	case "abby":
+		// 		console.log(chosenMuppet+'wins')
+		// 	break;
+
+		// 	case "snuffleupagus":
+		// 		console.log(chosenMuppet+'wins')			
+		// 	break;
+
+		// 	case "oscar":
+		// 		console.log(chosenMuppet+'wins')
+		// 	break;
+
+		// 	case "bigbird":
+		// 		console.log(chosenMuppet+'wins')
+		// 	break; 
+		}
 		//play winning video
 	} else if (guessesLeft === 0){ 
 		wins--;
